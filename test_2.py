@@ -30,6 +30,10 @@ class TestScoreGuess(unittest.TestCase):
         # 'a' only appears later
         self.assertEqual(score_guess("abcde", "eabcd"), "OOOOX")
 
+    #My unittest for score_guess
+    def test_close_guess(self):
+        self.assertEqual(score_guess('train','brain'), 'XYYYY')
+
 
 class TestIsValidGuess(unittest.TestCase):
 
@@ -45,6 +49,10 @@ class TestIsValidGuess(unittest.TestCase):
     def test_non_letters(self):
         self.assertFalse(is_valid_guess("a1cde"))
         self.assertFalse(is_valid_guess("ab-de"))
+    
+    #My unittest for test_valid_guess
+    def test_new_characters(self):
+        self.assertFalse(is_valid_guess('?#*^&'))
 
 
 class TestChooseSecret(unittest.TestCase):
@@ -52,6 +60,11 @@ class TestChooseSecret(unittest.TestCase):
     def test_choose__word(self):
         words = ["apple", "brick", "crane"]
         self.assertIn(choose_secret(words), "apple")
+
+    #my unittest for choosing first element for secret word
+    def second_test_choose_word(self):
+        word_list = ['adieu', 'audio','brain','skull']
+        self.assertEqual(choose_secret(word_list), 'adieu')
 
 
 class TestPlayTurn(unittest.TestCase):
@@ -61,6 +74,9 @@ class TestPlayTurn(unittest.TestCase):
 
     def test_valid_guess(self):
         self.assertEqual(play_turn("crane", "crane"), "YYYYY")
+
+    def test_semivalid_guess(self):
+        self.assertEqual(play_turn('crane','brain'), 'XYYXO')
 
 
 if __name__ == "__main__":
