@@ -50,6 +50,14 @@ def play_turn(secret: str, guess: str) ->str:
 
 # ----- Full Wordle game -----
 def play_game(words):
-    pass
+    num_of_guesses = 6
+    the_secret_word = choose_secret(WORDS)
+    for i in range(num_of_guesses):
+        user_guess  = str(input("What is your 5 letter guess?"))
+        print(play_turn(the_secret_word, user_guess))
+        if the_secret_word == user_guess:
+            print("Good Job! You win!")
+            return
+        print(f'You have {5-i} guesses left')
 
-
+#play_game(WORDS)
